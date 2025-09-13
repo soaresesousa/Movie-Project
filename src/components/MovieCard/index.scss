@@ -1,0 +1,74 @@
+.movie-card {
+    width: 100%;
+    height: 100%;
+    border-radius:8px;
+    overflow:hidden;
+    position: relative;
+    
+    .movie-poster img {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        object-fit:cover;
+        transition: opacity .6s;
+    }
+
+    .movie-infos {
+        position:absolute;
+        bottom: 0;
+        background:linear-gradient(#00000000, #000000 90%);
+        height: 200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        justify-content: end;
+
+        .movie-title{
+            color:#f1f5f9;
+            font-size:12px;
+            margin-bottom:5px;
+        }
+
+        .hidden-content {
+            color:#f1f5f9;
+            font-size:12px;
+            margin-top:8px;
+            height: 0px;
+            opacity:0;
+            transition: all .6s ease;
+
+            .btn-default {
+                background:#6046ff;
+                padding:6px 8px;
+                border-radius:4px;
+                margin-top:10px;
+                cursor: pointer;
+                width: 100%;
+                color:#fff;
+                border: none;
+            }
+            
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        .movie-poster img{
+            opacity: 0.5;
+        }
+
+        .hidden-content {
+            opacity:1;
+        }
+
+        .movie-infos:has(.movie-description) .hidden-content {
+            height:100px;
+        }
+
+        .movie-infos:not(:has(.movie-description)) .hidden-content {
+            height:50px;
+        }
+    }
+}

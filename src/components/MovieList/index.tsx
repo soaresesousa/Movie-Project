@@ -5,16 +5,18 @@ import MovieCard from '@/components/MovieCard'
 import './index.scss';
 import axios from 'axios';
 import {Movie} from '@/types/movie'
+import {CircleLoader, ClipLoader} from 'react-spinners';
 
 function index() {
     const [movies, setMovies] = useState<Movie[]>([]);
+    const [isLoading, setisLoading] = useState<boolean>(true);
     
     useEffect(() => {
         getMovies();
     }, []);
 
-    const getMovies = () => {
-        axios({
+    const getMovies = async () => {
+        await axios({
             method: 'get',
             url: 'https://api.themoviedb.org/3/discover/movie',
             params: {
@@ -23,7 +25,18 @@ function index() {
             }
         }).then(response => {
             setMovies(response.data.results);
-        })
+        });
+            setisLoading(false);
+        }
+
+    if(isLoading) {
+        return (
+            <div className="loadingContainer">
+                <ClipLoader
+                color='#fff'
+                loading={isLoading}/>
+            </div>
+        )
     }
 
     
