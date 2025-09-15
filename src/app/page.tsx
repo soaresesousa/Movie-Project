@@ -1,9 +1,11 @@
 import MovieList from '@/components/MovieList';
 
-export default function Home() {
+export default function Home(movieSearch: string) {
   return (
     <div>
-      <MovieList />
+      <MovieList 
+      movieSearch={movieSearch}
+      />
     </div>
   );
 }

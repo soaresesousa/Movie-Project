@@ -4,14 +4,18 @@ import './Search.scss'
 import {useRef} from 'react';
 import {FaMagnifyingGlass} from 'react-icons/fa6';
 
-export default function Search (){    
+interface Props {
+    setNewMovieName: (name: string) => void;
+}
+
+export default function Search (props: Props){    
     const inputValue = useRef();
-    
 
     const handleChange = (event) => {
         event.preventDefault();
         const newMovieName = (inputValue.current.value);
         console.log(newMovieName);
+        props.setNewMovieName(newMovieName);
     }
     
     return (

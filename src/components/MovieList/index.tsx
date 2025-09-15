@@ -7,11 +7,10 @@ import axios from 'axios';
 import {Movie} from '@/types/movie'
 import {ClipLoader} from 'react-spinners';
 
-function index() {
+function index(movieSearch: string) {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [isLoading, setisLoading] = useState<boolean>(true);
     
-    const kim = 'Kimetsu';
     
     useEffect(() => {
         getMovies();
@@ -43,22 +42,33 @@ function index() {
         )
     }
 
+    let newArray = [];
     
   return (
     <ul className="movie-list">
-        {movies.map((movie) =>
-            <MovieCard
-            key={movie.id}
-            movie={movie}
-            />
+        {movies.map((movie) => {
+            if(movieSearch.length) {
+                if(movie.title.split(' ').includes(movieSearch)){
+                    newArray.push(movie)
+                }
+                setMovies(newArray);
+
+                return (<MovieCard
+                key={movie.id}
+                movie={movie}
+                />)
+            } else {
+                return (
+                    <MovieCard 
+                    key={movie.id}
+                    movie={movie}
+                    />
+                )
+            }
+            }
         )}
     </ul>
   )
 }
 
 export default index;
-
-{/* <MovieCard
-            key={movie.id}
-            movie={movie}
-            /> */}
