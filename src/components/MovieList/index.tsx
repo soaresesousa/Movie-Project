@@ -5,11 +5,13 @@ import MovieCard from '@/components/MovieCard'
 import './index.scss';
 import axios from 'axios';
 import {Movie} from '@/types/movie'
-import {CircleLoader, ClipLoader} from 'react-spinners';
+import {ClipLoader} from 'react-spinners';
 
 function index() {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [isLoading, setisLoading] = useState<boolean>(true);
+    
+    const kim = 'Kimetsu';
     
     useEffect(() => {
         getMovies();
@@ -24,7 +26,9 @@ function index() {
                 language: 'pt-BR'
             }
         }).then(response => {
-            setMovies(response.data.results);
+                setMovies(response.data.results);
+               /*  console.log(response.data.results[0].title.split(' ')); */
+            
         });
             setisLoading(false);
         }
@@ -42,7 +46,7 @@ function index() {
     
   return (
     <ul className="movie-list">
-        {movies.map((movie) => 
+        {movies.map((movie) =>
             <MovieCard
             key={movie.id}
             movie={movie}
@@ -53,3 +57,8 @@ function index() {
 }
 
 export default index;
+
+{/* <MovieCard
+            key={movie.id}
+            movie={movie}
+            /> */}

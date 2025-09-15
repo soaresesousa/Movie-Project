@@ -1,0 +1,22 @@
+.search-area {
+        display: flex;
+        
+        input {
+            border-radius:6px 0 0 6px;        
+            border: 1px solid #959697;
+            border-right:none;
+            padding: 5px;
+            background:transparent;
+            color:#fff;
+            outline:none;
+        }
+
+        .search-btn {
+            border-radius:0 6px 6px 0;
+            border:1px solid #959697;
+            padding: 5px;
+            background:transparent;
+            color:#fff;
+            cursor: pointer;
+        }
+    }
